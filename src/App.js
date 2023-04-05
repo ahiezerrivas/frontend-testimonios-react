@@ -10,7 +10,7 @@ import './App.css'
 import  Testimonio  from './components/Testimonio'
 
 import Inicio from './pages/Inicio'
-
+import Cargar from './pages/Cargar';
 function App() {
  
   return(
@@ -20,6 +20,7 @@ function App() {
       <Routes>
 
           <Route exact path="/" element={<Inicio />} />
+          <Route exact path="/post" element={<Cargar />} />
       </Routes>
 
     </div>
