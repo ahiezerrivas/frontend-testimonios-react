@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect} from 'react'
+import axios from 'axios';
+import './App.css'
+import  Testimonio  from './components/Testimonio'
+
 
 function App() {
+  const [testimonios, setTestimonio ] = useState([])
+  
+  useEffect(() =>{
+    axios.get('/get/')
+    .then((response) => {
+      setTestimonio(response.data)
+    }).catch(()=>{
+      alert('Algo fue mal')
+    })
+  }, [])
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className='contenedor-principal'>
+        <h1>Aqui lo que nuestros alumnos dicen de Freecodecamp</h1>
+       {testimonios.map((testimonio)=>(
+
+        <Testimonio
+          key={testimonio.nombre}
+          testimonio = {testimonio}
         >
-          Learn React
-        </a>
-      </header>
+
+        </Testimonio>
+       ))}
+      </div>
     </div>
   );
 }
