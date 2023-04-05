@@ -1,37 +1,30 @@
 import React, { useState, useEffect} from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom'
+
 import axios from 'axios';
 import './App.css'
 import  Testimonio  from './components/Testimonio'
 
+import Inicio from './pages/Inicio'
 
 function App() {
-  const [testimonios, setTestimonio ] = useState([])
-  
-  useEffect(() =>{
-    axios.get('/get/')
-    .then((response) => {
-      setTestimonio(response.data)
-    }).catch(()=>{
-      alert('Algo fue mal')
-    })
-  }, [])
-  
-  return (
-    <div className="App">
-      <div className='contenedor-principal'>
-        <h1>Aqui lo que nuestros alumnos dicen de Freecodecamp</h1>
-       {testimonios.map((testimonio)=>(
+ 
+  return(
 
-        <Testimonio
-          key={testimonio.nombre}
-          testimonio = {testimonio}
-        >
+  <BrowserRouter>
+    <div >
+      <Routes>
 
-        </Testimonio>
-       ))}
-      </div>
+          <Route exact path="/" element={<Inicio />} />
+      </Routes>
+
     </div>
-  );
+  </BrowserRouter>
+  )
 }
 
 export default App;
